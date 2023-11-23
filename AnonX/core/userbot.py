@@ -64,20 +64,14 @@ class Userbot(Client):
             )
             try:
                 await self.one.send_message(
-                    config.LOG_GROUP_ID, f"**» {config.MUSIC_BOT_NAME} ᴀssɪsᴛᴀɴᴛ ᴏɴᴇ sᴛᴀʀᴛᴇᴅ :**\n\n✨ ɪᴅ : `{self.one.id}`\n❄ ɴᴀᴍᴇ : {self.one.name}\n💫 ᴜsᴇʀɴᴀᴍᴇ : @{self.one.username}"
-                )
+                    config.LOG_GROUP_ID, f"Assistant Started")
             except:
                 LOGGER(__name__).error(
                     f"Assistant Account 1 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin ! "
                 )
                 sys.exit()
         if config.STRING2:
-            await self.two.start()
-            try:
-                await self.two.join_chat("DevilsHeavenMF")
-                await self.two.join_chat("FallenAssociation")
-            except:
-                pass
+            await self.two.start()            
             assistants.append(2)
             get_me = await self.two.get_me()
             self.two.username = get_me.username
@@ -103,12 +97,7 @@ class Userbot(Client):
                 f"Assistant Two Started as {self.two.name}"
             )
         if config.STRING3:
-            await self.three.start()
-            try:
-                await self.three.join_chat("DevilsHeavenMF")
-                await self.three.join_chat("FallenAssociation")
-            except:
-                pass
+            await self.three.start()            
             assistants.append(3)
             get_me = await self.three.get_me()
             self.three.username = get_me.username
@@ -134,12 +123,7 @@ class Userbot(Client):
                 f"Assistant Three Started as {self.three.name}"
             )
         if config.STRING4:
-            await self.four.start()
-            try:
-                await self.four.join_chat("DevilsHeavenMF")
-                await self.four.join_chat("FallenAssociation")
-            except:
-                pass
+            await self.four.start()            
             assistants.append(4)
             get_me = await self.four.get_me()
             self.four.username = get_me.username
@@ -165,12 +149,7 @@ class Userbot(Client):
                 f"Assistant Four Started as {self.four.name}"
             )
         if config.STRING5:
-            await self.five.start()
-            try:
-                await self.five.join_chat("DevilsHeavenMF")
-                await self.five.join_chat("FallenAssociation")
-            except:
-                pass
+            await self.five.start()            
             assistants.append(5)
             get_me = await self.five.get_me()
             self.five.username = get_me.username
