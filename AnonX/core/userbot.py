@@ -46,12 +46,7 @@ class Userbot(Client):
     async def start(self):
         LOGGER(__name__).info(f"Gettings Assistants Info...")
         if config.STRING1:
-            await self.one.start()
-            try:
-                await self.one.join_chat("DevilsHeavenMF")
-                await self.one.join_chat("FallenAssociation")
-            except:
-                pass
+            await self.one.start()            
             assistants.append(1)
             get_me = await self.one.get_me()
             self.one.username = get_me.username
