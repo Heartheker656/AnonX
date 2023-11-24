@@ -18,6 +18,7 @@ from AnonX.utils.database import (add_banned_user,
                                        remove_banned_user)
 from AnonX.utils.decorators.language import language
 
+
 # Command
 GBAN_COMMAND = get_command("GBAN_COMMAND")
 UNGBAN_COMMAND = get_command("UNGBAN_COMMAND")
@@ -67,7 +68,6 @@ async def gbanuser(client, message: Message, _):
         except Exception:
             pass
     await add_banned_user(user_id)
-    await message.reply_sticker("CAACAgUAAxkBAAIjZmKPbsuJzL3TVFQ7q2lc_rRuqa6xAAIyCQACHjuBVOwXUJB64QeSJAQ")
     await message.reply_text(
         _["gban_6"].format(mention, number_of_chats)
     )
@@ -111,7 +111,6 @@ async def gungabn(client, message: Message, _):
         except Exception:
             pass
     await remove_banned_user(user_id)
-    await message.reply_sticker("CAACAgUAAxkBAAIjbGKPb3oOFXIT3KSxlIoefG7jTLOiAAJuBgAC_415VDBZlDYZrGxCJAQ")
     await message.reply_text(
         _["gban_9"].format(mention, number_of_chats)
     )
@@ -125,7 +124,7 @@ async def gbanned_list(client, message: Message, _):
     if counts == 0:
         return await message.reply_text(_["gban_10"])
     mystic = await message.reply_text(_["gban_11"])
-    msg = "ɢʙᴀɴɴᴇᴅ ᴜsᴇʀs:\n\n"
+    msg = "Gbanned Users:\n\n"
     count = 0
     users = await get_banned_users()
     for user_id in users:
@@ -137,9 +136,9 @@ async def gbanned_list(client, message: Message, _):
             )
             msg += f"{count}➤ {user}\n"
         except Exception:
-            msg += f"{count}➤ [ᴜɴᴋɴᴏᴡɴ ᴜsᴇʀ]{user_id}\n"
+            msg += f"{count}➤ [Unfetched User]{user_id}\n"
             continue
     if count == 0:
         return await mystic.edit_text(_["gban_10"])
     else:
-        return await mystic.edit_text(msg)
+        return await mystic.edit_text(msg)       
