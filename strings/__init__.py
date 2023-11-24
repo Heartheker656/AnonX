@@ -6,6 +6,8 @@ import yaml
 languages = {}
 commands = {}
 
+languages_present = {}
+
 
 def get_command(value: str) -> List:
     return commands["command"][value]
