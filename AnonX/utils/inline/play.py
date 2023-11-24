@@ -1,40 +1,39 @@
-import math 
+#
+# Copyright (C) 2021-2022 by TeamYukki@Github, < https://github.com/TeamYukki >.
+#
+# This file is part of < https://github.com/TeamYukki/YukkiMusicBot > project,
+# and is released under the "GNU v3.0 License Agreement".
+# Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
+#
+# All rights reserved.
+
 import random
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from AnonX.utils.formatters import time_to_seconds
+from pyrogram.types import InlineKeyboardButton
 
+selections = [
+    "▁▄▂▇▄▅▄▅▃",
+    "▁▃▇▂▅▇▄▅▃",
+    "▃▁▇▂▅▃▄▃▅",
+    "▃▄▂▄▇▅▃▅▁",
+    "▁▃▄▂▇▃▄▅▃",
+    "▃▁▄▂▅▃▇▃▅",
+    "▁▇▄▂▅▄▅▃▄",
+    "▁▃▅▇▂▅▄▃▇",
+    "▃▅▂▅▇▁▄▃▁",
+    "▇▅▂▅▃▄▃▁▃",
+    "▃▇▂▅▁▅▄▃▁",
+    "▅▄▇▂▅▂▄▇▁",
+    "▃▅▂▅▃▇▄▅▃",
+]
 
 
 ## After Edits with Timer Bar
 
-def stream_markup_timer(_, videoid, chat_id, played, dur):
-    played_sec = time_to_seconds(played)
-    duration_sec = time_to_seconds(dur)
-    percentage = (played_sec / duration_sec) * 100
-    anon = math.floor(percentage)
-    if 0 < Yukki <= 10:
-        bar = "◉—————————"
-    elif 10 < Yukki < 20:
-        bar = "—◉————————"
-    elif 20 <= Yukki < 30:
-        bar = "——◉———————"
-    elif 30 <= Yukki < 40:
-        bar = "———◉——————"
-    elif 40 <= Yukki < 50:
-        bar = "————◉—————"
-    elif 50 <= Yukki < 60:
-        bar = "—————◉————"
-    elif 60 <= Yukki < 70:
-        bar = "——————◉———"
-    elif 70 <= Yukki < 80:
-        bar = "———————◉——"
-    elif 80 <= Yukki < 95:
-        bar = "————————◉—"
-    else:
-        bar = "—————————◉"
 
-buttons = [
+def stream_markup_timer(_, videoid, chat_id, played, dur):
+    bar = random.choice(selections)
+    buttons = [
         [
             InlineKeyboardButton(
                 text=f"{played} {bar} {dur}",
@@ -61,32 +60,8 @@ buttons = [
 
 
 def telegram_markup_timer(_, chat_id, played, dur):
-    played_sec = time_to_seconds(played)
-    duration_sec = time_to_seconds(dur)
-    percentage = (played_sec / duration_sec) * 100
-    anon = math.floor(percentage)
-    if 0 < Yukki <= 10:
-        bar = "◉—————————"
-    elif 10 < Yukki < 20:
-        bar = "—◉————————"
-    elif 20 <= Yukki < 30:
-        bar = "——◉———————"
-    elif 30 <= Yukki < 40:
-        bar = "———◉——————"
-    elif 40 <= Yukki < 50:
-        bar = "————◉—————"
-    elif 50 <= Yukki < 60:
-        bar = "—————◉————"
-    elif 60 <= Yukki < 70:
-        bar = "——————◉———"
-    elif 70 <= Yukki < 80:
-        bar = "———————◉——"
-    elif 80 <= Yukki < 95:
-        bar = "————————◉—"
-    else:
-        bar = "—————————◉"
-
-  buttons = [
+    bar = random.choice(selections)
+    buttons = [
         [
             InlineKeyboardButton(
                 text=f"{played} {bar} {dur}",
