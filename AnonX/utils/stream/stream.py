@@ -113,8 +113,10 @@ async def stream(
                     original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
+                        title[:23],
+                        f"https://www.youtube.com/watch?v=info_{vidid}",
+                        duration_min,
                         user_name,
-                        f"https://t.me/{app.username}?start=info_{vidid}",
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
@@ -194,8 +196,10 @@ async def stream(
                 original_chat_id,
                 photo=img,
                 caption=_["stream_1"].format(
+                    title[:23],
+                    f"https://www.youtube.com/watch?v=info_{vidid}",
+                    duration_min,
                     user_name,
-                    f"https://t.me/{app.username}?start=info_{vidid}",
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
@@ -363,8 +367,11 @@ async def stream(
                 original_chat_id,
                 photo=img,
                 caption=_["stream_1"].format(
+                    title[:23],
+                    f"https://www.youtube.com/watch?v=info_{vidid}",
+                    duration_min,
                     user_name,
-                    f"https://t.me/{app.username}?start=info_{vidid}",
+                
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
