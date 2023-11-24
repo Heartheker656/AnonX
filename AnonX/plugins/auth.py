@@ -128,7 +128,6 @@ async def unauthusers(client, message: Message, _):
     & ~filters.edited
     & ~BANNED_USERS
 )
-@language
 async def authusers(client, message: Message, _):
     _playlist = await get_authuser_names(message.chat.id)
     if not _playlist:
