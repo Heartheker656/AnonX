@@ -1,3 +1,5 @@
+
+
 import os
 from random import randint
 
@@ -215,9 +217,8 @@ async def add_playlist(client, CallbackQuery, _):
     await save_playlist(user_id, videoid, plist)
     try:
         title = (title[:30]).title()
-        return await CallbackQuery.message.reply_text(
-            text="❄ sᴜᴄᴄᴇssғᴜʟʟʏ ᴀᴅᴅᴇᴅ ᴛᴏ ᴩʟᴀʏʟɪsᴛ.\n │\n └ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ : {0}".format(CallbackQuery.from_user.mention)
-            
+        return await CallbackQuery.answer(
+            _["playlist_10"].format(title), show_alert=True
         )
     except:
         return
@@ -330,4 +331,4 @@ async def del_back_playlist(client, CallbackQuery, _):
     keyboard, count = await get_keyboard(_, user_id)
     return await CallbackQuery.edit_message_text(
         _["playlist_7"].format(count), reply_markup=keyboard
-    )
+  )
