@@ -1,3 +1,4 @@
+
 import config
 from config import PRIVATE_BOT_MODE
 from AnonX.core.mongo import mongodb
@@ -11,6 +12,7 @@ langdb = mongodb.language
 authdb = mongodb.adminauth
 videodb = mongodb.anonvideocalls
 onoffdb = mongodb.onoffper
+suggdb = mongodb.suggestion
 autoenddb = mongodb.autoend
 
 
@@ -21,6 +23,7 @@ playmode = {}
 channelconnect = {}
 langm = {}
 pause = {}
+mute = {}
 audio = {}
 video = {}
 active = []
@@ -30,6 +33,7 @@ cleanmode = []
 nonadmin = {}
 vlimit = []
 maintenance = []
+suggestion = {}
 autoend = {}
 
 
@@ -63,6 +67,35 @@ async def autoend_off():
     user = await autoenddb.find_one({"chat_id": chat_id})
     if user:
         return await autoenddb.delete_one({"chat_id": chat_id})
+
+
+# SUGGESTION
+
+
+async def is_suggestion(chat_id: int) -> bool:
+    mode = suggestion.get(chat_id)
+    if not mode:
+        user = await suggdb.find_one({"chat_id": chat_id})
+        if not user:
+            suggestion[chat_id] = True
+            return True
+        suggestion[chat_id] = False
+        return False
+    return mode
+
+
+async def suggestion_on(chat_id: int):
+    suggestion[chat_id] = True
+    user = await suggdb.find_one({"chat_id": chat_id})
+    if user:
+        return await suggdb.delete_one({"chat_id": chat_id})
+
+
+async def suggestion_off(chat_id: int):
+    suggestion[chat_id] = False
+    user = await suggdb.find_one({"chat_id": chat_id})
+    if not user:
+        return await suggdb.insert_one({"chat_id": chat_id})
 
 
 # LOOP PLAY
@@ -154,6 +187,22 @@ async def set_lang(chat_id: int, lang: str):
     await langdb.update_one(
         {"chat_id": chat_id}, {"$set": {"lang": lang}}, upsert=True
     )
+
+
+# Muted
+async def is_muted(chat_id: int) -> bool:
+    mode = mute.get(chat_id)
+    if not mode:
+        return False
+    return mode
+
+
+async def mute_on(chat_id: int):
+    mute[chat_id] = True
+
+
+async def mute_off(chat_id: int):
+    mute[chat_id] = False
 
 
 # Pause-Skip
@@ -400,13 +449,8 @@ async def maintenance_on():
 
 
 # Audio Video Limit
-
-from pytgcalls.types.input_stream.quality import (HighQualityAudio,
-                                                  HighQualityVideo,
-                                                  LowQualityAudio,
-                                                  LowQualityVideo,
-                                                  MediumQualityAudio,
-                                                  MediumQualityVideo)
+from pytgcalls.types import AudioQuality, VideoQuality
+from pytgcalls.types import AudioParameters, VideoParameters
 
 
 async def save_audio_bitrate(chat_id: int, bitrate: str):
@@ -420,7 +464,7 @@ async def save_video_bitrate(chat_id: int, bitrate: str):
 async def get_aud_bit_name(chat_id: int) -> str:
     mode = audio.get(chat_id)
     if not mode:
-        return "High"
+        return "Ultra"
     return mode
 
 
@@ -437,25 +481,29 @@ async def get_vid_bit_name(chat_id: int) -> str:
 async def get_audio_bitrate(chat_id: int) -> str:
     mode = audio.get(chat_id)
     if not mode:
-        return MediumQualityAudio()
+        return AudioParameters.from_quality(AudioQuality.STUDIO)
+    if str(mode) == "Ultra":
+        return AudioParameters.from_quality(AudioQuality.STUDIO)
     if str(mode) == "High":
-        return HighQualityAudio()
+        return AudioParameters.from_quality(AudioQuality.HIGH)
     elif str(mode) == "Medium":
-        return MediumQualityAudio()
+        return AudioParameters.from_quality(AudioQuality.MEDIUM)
     elif str(mode) == "Low":
-        return LowQualityAudio()
+        return AudioParameters.from_quality(AudioQuality.LOW)
 
 
 async def get_video_bitrate(chat_id: int) -> str:
     mode = video.get(chat_id)
     if not mode:
         if PRIVATE_BOT_MODE == str(True):
-            return HighQualityVideo()
+            return VideoParameters.from_quality(VideoQuality.HD_720p)
         else:
-            return MediumQualityVideo()
+            return VideoParameters.from_quality(VideoQuality.SD_360p)
+    if str(mode) == "Ultra":
+        return VideoParameters.from_quality(VideoQuality.FHD_1080p)
     if str(mode) == "High":
-        return HighQualityVideo()
+        return VideoParameters.from_quality(VideoQuality.HD_720p)
     elif str(mode) == "Medium":
-        return MediumQualityVideo()
+        return VideoParameters.from_quality(VideoQuality.SD_480p)
     elif str(mode) == "Low":
-        return LowQualityVideo()
+        return VideoParameters.from_quality(VideoQuality.SD_360p)
