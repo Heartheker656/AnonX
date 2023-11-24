@@ -1,6 +1,5 @@
-import asyncio
 from datetime import datetime
-
+import asyncio
 import config
 from AnonX import app
 from AnonX.core.call import Anon, autoend
@@ -29,9 +28,9 @@ async def auto_leave():
                             chat_id = i.chat.id
                             if (
                                 chat_id != config.LOG_GROUP_ID
-                                and chat_id != -1001686672798
-                                and chat_id != -1001840101403
-                                and chat_id != -1001549206010
+                                and chat_id != -1001190342892
+                                and chat_id != -1001733534088
+                                and chat_id != -1001443281821
                             ):
                                 if left == 20:
                                     continue
@@ -70,7 +69,7 @@ async def auto_end():
                 try:
                     await app.send_message(
                         chat_id,
-                        "» ʙᴏᴛ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ʟᴇғᴛ ᴠɪᴅᴇᴏᴄʜᴀᴛ ʙᴇᴄᴀᴜsᴇ ɴᴏ ᴏɴᴇ ᴡᴀs ʟɪsᴛᴇɴɪɴɢ ᴏɴ ᴠɪᴅᴇᴏᴄʜᴀᴛ.",
+                        "Bot has left voice chat due to inactivity to avoid overload on servers. No-one was listening to the bot on voice chat.",
                     )
                 except:
                     continue
