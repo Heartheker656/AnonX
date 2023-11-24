@@ -64,5 +64,5 @@ async def play_live_stream(client, CallbackQuery, _):
             )
             return await mystic.edit_text(err)
     else:
-        return await mystic.edit_text("ɪ ᴅᴏɴ'ᴛ ᴛʜɪɴᴋ ᴛʜᴀᴛ ɪᴛ's ᴀ ʟɪᴠᴇ sᴛʀᴇᴀᴍ.")
+        return await mystic.edit_text("Not a live stream")
     await mystic.delete()
