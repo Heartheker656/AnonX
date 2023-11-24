@@ -1,4 +1,5 @@
-from config import LOG, LOG_GROUP_ID, MUSIC_BOT_NAME
+
+from config import LOG, LOG_GROUP_ID
 from AnonX import app
 from AnonX.utils.database import is_on_off
 
@@ -8,24 +9,24 @@ async def play_logs(message, streamtype):
         if message.chat.username:
             chatusername = f"@{message.chat.username}"
         else:
-            chatusername = "ᴩʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ"
+            chatusername = "Private Group"
         logger_text = f"""
-**{MUSIC_BOT_NAME} ᴩʟᴀʏ ʟᴏɢɢᴇʀ**
+**YUKKI PLAY LOG**
 
-**ᴄʜᴀᴛ:** {message.chat.title} [`{message.chat.id}`]
-**ᴜsᴇʀ:** {message.from_user.mention}
-**ᴜsᴇʀɴᴀᴍᴇ:** @{message.from_user.username}
-**ɪᴅ:** `{message.from_user.id}`
-**ᴄʜᴀᴛ ʟɪɴᴋ:** {chatusername}
+**Chat:** {message.chat.title} [`{message.chat.id}`]
+**User:** {message.from_user.mention}
+**Username:** @{message.from_user.username}
+**User ID:** `{message.from_user.id}`
+**Chat Link:** {chatusername}
 
-**sᴇᴀʀᴄʜᴇᴅ ғᴏʀ:** {message.text}
+**Query:** {message.text}
 
-**sᴛʀᴇᴀᴍ ᴛʏᴩᴇ:** {streamtype}"""
+**StreamType:** {streamtype}"""
         if message.chat.id != LOG_GROUP_ID:
             try:
                 await app.send_message(
                     LOG_GROUP_ID,
-                    text=logger_text,
+                    f"{logger_text}",
                     disable_web_page_preview=True,
                 )
             except:
