@@ -114,7 +114,6 @@ async def stream(
                     photo=img,
                     caption=_["stream_1"].format(
                         title[:23],
-                        f"https://www.youtube.com/watch?v=info_{vidid}",
                         duration_min,
                         user_name,
                     ),
@@ -196,8 +195,7 @@ async def stream(
                 original_chat_id,
                 photo=img,
                 caption=_["stream_1"].format(
-                    title[:23],
-                    f"https://www.youtube.com/watch?v=info_{vidid}",
+                    title[:23],                    
                     duration_min,
                     user_name,
                 ),
@@ -367,8 +365,7 @@ async def stream(
                 original_chat_id,
                 photo=img,
                 caption=_["stream_1"].format(
-                    title[:23],
-                    f"https://www.youtube.com/watch?v=info_{vidid}",
+                    title[:23],                   
                     duration_min,
                     user_name,
                 
