@@ -118,9 +118,7 @@ async def skip(cli, message: Message, _, chat_id):
         img = await gen_thumb(videoid)
         run = await message.reply_photo(
             photo=img,
-            caption=_["stream_1"].format(
-              title[:50],
-              duration_min,
+            caption=_["stream_1"].format(              
               user,
                  ),
             reply_markup=InlineKeyboardMarkup(button),
@@ -148,9 +146,7 @@ async def skip(cli, message: Message, _, chat_id):
         img = await gen_thumb(videoid)
         run = await message.reply_photo(
             photo=img,
-            caption=_["stream_1"].format(
-               title[:50],
-               duration_min,
+            caption=_["stream_1"].format(               
                user,
                 
             ),
@@ -208,9 +204,7 @@ async def skip(cli, message: Message, _, chat_id):
             img = await gen_thumb(videoid)
             run = await message.reply_photo(
                 photo=img,
-                caption=_["stream_1"].format(
-                    title[:50],
-                    duration_min,
+                caption=_["stream_1"].format(                    
                     user,
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
