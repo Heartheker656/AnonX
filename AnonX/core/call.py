@@ -310,15 +310,15 @@ class Call(PyTgCalls):
                 )
             except Exception as e:
                 raise AssistantErr(
-                    "**ɴᴏ ᴀᴄᴛɪᴠᴇ ᴠɪᴅᴇᴏ ᴄʜᴀᴛ ғᴏᴜɴᴅ**\n\nᴩʟᴇᴀsᴇ ᴍᴀᴋᴇ sᴜʀᴇ ʏᴏᴜ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ."
+                    "No Active Voice Chat\n\nStart Fresh Voice Chat"
                 )
         except AlreadyJoinedError:
             raise AssistantErr(
-                "**ᴀssɪsᴛᴀɴᴛ ᴀʟʀᴇᴀᴅʏ ɪɴ ᴠɪᴅᴇᴏᴄʜᴀᴛ**\n\nᴍᴜsɪᴄ ʙᴏᴛ sʏsᴛᴇᴍs ᴅᴇᴛᴇᴄᴛᴇᴅ ᴛʜᴀᴛ ᴀssɪᴛᴀɴᴛ ɪs ᴀʟʀᴇᴀᴅʏ ɪɴ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ, ɪғ ᴛʜɪs ᴩʀᴏʙʟᴇᴍ ᴄᴏɴᴛɪɴᴜᴇs ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ."
+                "Assistant  is already  in voice chat"
             )
         except TelegramServerError:
             raise AssistantErr(
-                "**ᴛᴇʟᴇɢʀᴀᴍ sᴇʀᴠᴇʀ ᴇʀʀᴏʀ**\n\nᴩʟᴇᴀsᴇ ᴛᴜʀɴ ᴏғғ ᴀɴᴅ ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴀɢᴀɪɴ."
+                "Telegram Server Error"
             )
         await add_active_chat(chat_id)
         await music_on(chat_id)
@@ -411,9 +411,8 @@ class Call(PyTgCalls):
                     original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
-                        title[:27],
-                        f"https://t.me/{app.username}?start=info_{videoid}",
-                        check[0]["dur"],
+                        title[:50],
+                        duration_min,                        
                         user,
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
@@ -474,9 +473,8 @@ class Call(PyTgCalls):
                     original_chat_id,
                     photo=img,
                     caption=_["stream_1"].format(
-                        title[:27],
-                        f"https://t.me/{app.username}?start=info_{videoid}",
-                        check[0]["dur"],
+                        title[:50],                      
+                        duration_min,
                         user,
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
@@ -580,9 +578,8 @@ class Call(PyTgCalls):
                         original_chat_id,
                         photo=img,
                         caption=_["stream_1"].format(
-                            title[:27],
-                            f"https://t.me/{app.username}?start=info_{videoid}",
-                            check[0]["dur"],
+                            title[:50],                          
+                            duration_min,
                             user,
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
