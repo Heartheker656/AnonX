@@ -10,8 +10,8 @@ from AnonX.misc import db
 from AnonX.utils.database import get_loop
 from AnonX.utils.decorators import AdminRightsCheck
 from AnonX.utils.inline.play import (stream_markup,
-                                          telegram_markup,
-                                          close_keyboard)
+                                          telegram_markup,)
+                                          
 from AnonX.utils.stream.autoclear import auto_clean
 from AnonX.utils.thumbnails import gen_thumb
 
@@ -60,8 +60,8 @@ async def skip(cli, message: Message, _, chat_id):
                                         _["admin_10"].format(
                                             message.from_user.first_name,
                                             message.chat.title
-                                        ),
-                                        reply_markup=close_keyboard
+                                        )
+                                        
                                     )
                                     await Anon.stop_stream(chat_id)
                                 except:
@@ -87,8 +87,8 @@ async def skip(cli, message: Message, _, chat_id):
                     await auto_clean(popped)
             if not check:
                 await message.reply_text(
-                    _["admin_10"].format(message.from_user.first_name, message.chat.title),
-                    reply_markup=close_keyboard
+                    _["admin_10"].format(message.from_user.first_name, message.chat.title)
+                    
                 )
                 try:
                     return await Anon.stop_stream(chat_id)
