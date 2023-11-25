@@ -1,5 +1,3 @@
-
-
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
@@ -121,9 +119,10 @@ async def skip(cli, message: Message, _, chat_id):
         run = await message.reply_photo(
             photo=img,
             caption=_["stream_1"].format(
-                user,
-                f"https://t.me/{app.username}?start=info_{videoid}",
-            ),
+              title[:50],
+              duration_min,
+              user,
+                 ),
             reply_markup=InlineKeyboardMarkup(button),
         )
         db[chat_id][0]["mystic"] = run
@@ -150,8 +149,10 @@ async def skip(cli, message: Message, _, chat_id):
         run = await message.reply_photo(
             photo=img,
             caption=_["stream_1"].format(
-                user,
-                f"https://t.me/{app.username}?start=info_{videoid}",
+               title[:50],
+               duration_min,
+               user,
+                
             ),
             reply_markup=InlineKeyboardMarkup(button),
         )
@@ -208,8 +209,9 @@ async def skip(cli, message: Message, _, chat_id):
             run = await message.reply_photo(
                 photo=img,
                 caption=_["stream_1"].format(
+                    title[:50],
+                    duration_min,
                     user,
-                    f"https://t.me/{app.username}?start=info_{videoid}",
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
