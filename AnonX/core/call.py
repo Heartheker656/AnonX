@@ -412,7 +412,7 @@ class Call(PyTgCalls):
                     photo=img,
                     caption=_["stream_1"].format(
                         title[:50],
-                        duration_min,                        
+                        check[0]["dur"],                        
                         user,
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
@@ -474,10 +474,9 @@ class Call(PyTgCalls):
                     photo=img,
                     caption=_["stream_1"].format(
                         title[:50],                      
-                        duration_min,
+                        check[0]["dur"],
                         user,
-                    ),
-                    reply_markup=InlineKeyboardMarkup(button),
+                    )          reply_markup=InlineKeyboardMarkup(button),
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "stream"
@@ -579,7 +578,7 @@ class Call(PyTgCalls):
                         photo=img,
                         caption=_["stream_1"].format(
                             title[:50],                          
-                            duration_min,
+                            check[0]["dur"],
                             user,
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
